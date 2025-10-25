@@ -1,0 +1,365 @@
+{
+    "proyectos": [
+        {
+            "id": 1,
+            "titulo": {
+                "es": "LexIA",
+                "en": "LexIA",
+                "zh": "LexIA"
+            },
+            "categoria": {
+                "es": "IA",
+                "en": "AI",
+                "zh": "人工智能"
+            },
+            "imagen": "/proyectos/win.png",
+            "icono": "💼",
+            "color": "from-blue-500 to-blue-600",
+            "descripcion_corta": {
+                "es": "GPT integral para consultas y analisis legislativo",
+                "en": "Comprehensive platform for enterprise resource management",
+                "zh": "企业资源管理的综合平台"
+            },
+            "descripcion_larga": {
+                "es": "GPT juridico para el analisis de textos, imagenes y documentos, permite realizar iniciativas de ley y comprender reformas para dar su opinion y fungir como asistente legislativo.",
+                "en": "Legal GPT for the analysis of texts, images, and documents, allows you to draft legislative initiatives and understand reforms, provide your opinion, and serve as a legislative assistant.",
+                "zh": "法律 GPT 用于分析文本、图像和文档，使您能够起草立法倡议并了解改革，提供您的意见并充当立法助理."
+            },
+            "tecnologias": [
+                "JS",
+                "React",
+                "Node.js",
+                "MongoDB",
+                "Firebase",
+                "Express"
+            ],
+            "caracteristicas": {
+                "es": [
+                    "Chat interactivo",
+                    "Reportes en tiempo real",
+                    "API RESTful",
+                    "Autenticación"
+                ],
+                "en": [
+                    "Interactive chat",
+                    "Real-time reports",
+                    "RESTful API",
+                    "Authentication"
+                ],
+                "zh": [
+                    "互动聊天",
+                    "实时报告",
+                    "RESTful API",
+                    "验证"
+                ]
+            },
+            "enlace": "/proyectos/lexia",
+            "estado": {
+                "es": "Completado",
+                "en": "Completed",
+                "zh": "已完成"
+            },
+            "fecha": "2025",
+            "destacado": true
+        },
+        {
+            "id": 2,
+            "titulo": {
+                "es": "Revista Legislatura",
+                "en": "Mobile Delivery App",
+                "zh": "移动配送应用"
+            },
+            "categoria": {
+                "es": "Desarrollo Web",
+                "en": "Web",
+                "zh": "Web 开发"
+            },
+            "imagen": "/proyectos/win.png",
+            "icono": "🚚",
+            "color": "from-green-500 to-green-600",
+            "descripcion_corta": {
+                "es": "Revista digital con registro de usuarios, editor de articulos en linea y visualizacion de revistas digitales",
+                "en": "Digital magazine with user registration, online article editor, and digital magazine viewing",
+                "zh": "具有用户注册、在线文章编辑器和数字杂志浏览功能的数字杂志"
+            },
+            "descripcion_larga": {
+                "es": "Aplicacion web desarrollada para generar articulos digitales y fungir como centro de analisis especializado a nivel juridico, con conectividad con la red social X, registro y administracion de usuarios con Firebase y difundir el quehacer legislativo en Mexico",
+                "en": "Web application developed to generate digital articles and act as a specialized legal analysis center, with connectivity to the X social network, user registration and administration with Firebase, and to disseminate legislative work in Mexico.",
+                "zh": "开发的 Web 应用程序用于生成数字文章并充当专门的法律分析中心，可连接到 X 社交网络、使用 Firebase 进行用户注册和管理，并传播墨西哥的立法工作."
+            },
+            "tecnologias": [
+                "React",
+                "Firebase",
+                "MongoDB",
+                "TailwindCSS",
+                "Express",
+                "Node.js",
+                "Render"
+            ],
+            "caracteristicas": {
+                "es": [
+                    "GPS en tiempo real",
+                    "Notificaciones push",
+                    "Múltiples métodos de pago",
+                    "Historial de pedidos"
+                ],
+                "en": [
+                    "Real-time GPS",
+                    "Push notifications",
+                    "Multiple payment methods",
+                    "Order history"
+                ],
+                "zh": [
+                    "实时GPS",
+                    "推送通知",
+                    "多种支付方式",
+                    "订单历史"
+                ]
+            },
+            "enlace": "/proyectos/revista-legislatura",
+            "estado": {
+                "es": "Completado",
+                "en": "Completed",
+                "zh": "已完成"
+            },
+            "fecha": "2025",
+            "destacado": true
+        },
+        {
+            "id": 3,
+            "titulo": {
+                "es": "Panel de Control para cabinas ergonomicas",
+                "en": "Control Panel for ergonomic cabins",
+                "zh": "符合人体工程学的驾驶室控制面板"
+            },
+            "categoria": {
+                "es": "Sistemas de Control",
+                "en": "Control",
+                "zh": "控制系统"
+            },
+            "imagen": "/proyectos/win.png",
+            "icono": "🌱",
+            "color": "from-emerald-500 to-emerald-600",
+            "descripcion_corta": {
+                "es": "Panel de control para actuadores y sensores incorporados a dos cabinas ergonomicas para ingenieria industrial",
+                "en": "Control panel for actuators and sensors built into two ergonomic cabinets for industrial engineering",
+                "zh": "执行器和传感器的控制面板内置于两个符合人体工程学的工业工程柜中"
+            },
+            "descripcion_larga": {
+                "es": "Sistema de monitoreo y control de dos microcontroladores los cuales incorporan actuadores y sensores que permiten analizar el estres de usuarios.",
+                "en": "Monitoring and control system with two microcontrollers incorporating actuators and sensors that allow for user stress analysis.",
+                "zh": "监控和控制系统带有两个微控制器，包含执行器和传感器，可用于用户压力分析."
+            },
+            "tecnologias": [
+                "Arduino",
+                "C/C++",
+                "C#",
+                "Clean Arquitecture",
+                "MVC",
+                "Modbus",
+                "RS-485"
+            ],
+            "caracteristicas": {
+                "es": [
+                    "Sensores múltiples",
+                    "Dashboard web",
+                    "Alertas automáticas",
+                    "Bajo consumo energético"
+                ],
+                "en": [
+                    "Multiple sensors",
+                    "Web dashboard",
+                    "Automatic alerts",
+                    "Low power consumption"
+                ],
+                "zh": [
+                    "多传感器",
+                    "网页仪表板",
+                    "自动警报",
+                    "低功耗"
+                ]
+            },
+            "enlace": "/proyectos/pc",
+            "estado": {
+                "es": "Completado",
+                "en": "Completed",
+                "zh": "已完成"
+            },
+            "fecha": "2025",
+            "destacado": true
+        },
+        {
+            "id": 4,
+            "titulo": {
+                "es": "ErgoSphere",
+                "en": "ErgoSphere",
+                "zh": "ErgoSphere"
+            },
+            "categoria": {
+                "es": "Desarrollo Full Stack",
+                "en": "Full",
+                "zh": "全栈开发"
+            },
+            "imagen": "/proyectos/win.png",
+            "icono": "🎓",
+            "color": "from-purple-500 to-purple-600",
+            "descripcion_corta": {
+                "es": "Aplicacion de escritorio de evaluacion de metodos ergonomicos",
+                "en": "Desktop application for evaluating ergonomic methods",
+                "zh": "用于评估人体工程学方法的桌面应用程序"
+            },
+            "descripcion_larga": {
+                "es": "Aplicacion de escritorio la cual permite realizar evaluaciones de diferentes metodos ergonomicos con normativas mundiales y mexicanas.",
+                "en": "Desktop application that allows evaluations of different ergonomic methods with global and Mexican regulations.",
+                "zh": "桌面应用程序可以根据全球和墨西哥法规评估不同的人体工程学方法."
+            },
+            "tecnologias": [
+                "Python",
+                "Rest API",
+                "MySQL"
+            ],
+            "caracteristicas": {
+                "es": [
+                    "Evaluaciones interactivas",
+                    "Generacion de reportes",
+                    "Analisis de video e imagenes"
+                ],
+                "en": [
+                    "Interactive Assessments",
+                    "Report Generation",
+                    "Video and Image Analysis"
+                ],
+                "zh": [
+                    "交互式评估",
+                    "报告生成",
+                    "视频和图像分析"
+                ]
+            },
+            "enlace": "/proyectos/ergosphere",
+            "estado": {
+                "es": "En desarrollo",
+                "en": "In development",
+                "zh": "开发中"
+            },
+            "fecha": "2025",
+            "destacado": true
+        },
+        {
+            "id": 5,
+            "titulo": {
+                "es": "GULU",
+                "en": "GULU",
+                "zh": "GULU"
+            },
+            "categoria": {
+                "es": "Desarrollo Electronico",
+                "en": "Hardware",
+                "zh": "电子开发"
+            },
+            "imagen": "/proyectos/win.png",
+            "icono": "⚙️",
+            "color": "from-orange-500 to-orange-600",
+            "descripcion_corta": {
+                "es": "Sistema de adquisicion, procesamiento y analisis de datos biolectricos",
+                "en": "Bioelectric data acquisition, processing and analysis system",
+                "zh": "生物电数据采集、处理与分析系统"
+            },
+            "descripcion_larga": {
+                "es": "Sistema de adquisicion, procesamiento y analisis de senales bioelectricas (corazon), con despliegue en aplicacion mobil y web, con guardado de datos y autenticacion en Firebase.",
+                "en": "Bioelectrical signal acquisition, processing, and analysis system (heart), with deployment in mobile and web applications, with data storage and authentication in Firebase.",
+                "zh": "生物电信号采集、处理和分析系统（心脏），部署在移动和网络应用程序中，并在 Firebase 中进行数据存储和身份验证."
+            },
+            "tecnologias": [
+                "C/C++",
+                "Kotlin",
+                "Firebase",
+                "EasyEDA",
+                "Android"
+            ],
+            "caracteristicas": {
+                "es": [
+                    "Control en tiempo real",
+                    "App movil",
+                    "Monitoreo remoto",
+                    "Analisis predictivo"
+                ],
+                "en": [
+                    "Real-time control",
+                    "Mobile app",
+                    "Remote monitoring",
+                    "Predictive analytics"
+                ],
+                "zh": [
+                    "实时控制",
+                    "移动应用",
+                    "远程监控",
+                    "预测性维护"
+                ]
+            },
+            "enlace": "/proyectos/gulu",
+            "estado": {
+                "es": "Completado",
+                "en": "Completed",
+                "zh": "已完成"
+            },
+            "fecha": "2024-2025",
+            "destacado": false
+        },
+        {
+            "id": 6,
+            "titulo": {
+                "es": "C+SS Bot",
+                "en": "C+SS Bot",
+                "zh": "C+SS 机器人"
+            },
+            "categoria": {
+                "es": "IA",
+                "en": "AI",
+                "zh": "人工智能"
+            },
+            "imagen": "/proyectos/win.png",
+            "icono": "📊",
+            "color": "from-indigo-500 to-indigo-600",
+            "descripcion_corta": {
+                "es": "Bot automatizado y con inteligencia artificial para dar informacion sobre servicios",
+                "en": "Automated and artificial intelligence bot to provide information about services",
+                "zh": "自动化和人工智能机器人提供有关服务的信息"
+            },
+            "descripcion_larga": {
+                "es": "Desarrollo de un bot completamente automatizado y con incorporacion de la API de OpenAI, para poder dar informacion sobre servicios de seguridad social.",
+                "en": "Development of a fully automated bot, incorporating the OpenAI API, to provide information on social security services.",
+                "zh": "开发一个全自动机器人，结合 OpenAI API, 提供有关社会保障服务的信息."
+            },
+            "tecnologias": [
+                "C#",
+                "Rest API",
+                "MVC"
+            ],
+            "caracteristicas": {
+                "es": [
+                    "Machine Learning",
+                    "Tiempo real",
+                    "SaaS"
+                ],
+                "en": [
+                    "Machine Learning",
+                    "Real-time",
+                    "SaaS"
+                ],
+                "zh": [
+                    "机器学习",
+                    "实时",
+                    "软件即服务"
+                ]
+            },
+            "enlace": "/proyectos/css-bot",
+            "estado": {
+                "es": "Completado",
+                "en": "Completed",
+                "zh": "已完成"
+            },
+            "fecha": "2024",
+            "destacado": false
+        }
+    ]
+}

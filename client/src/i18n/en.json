@@ -1,0 +1,62 @@
+{
+    "navbar": {
+        "home": "Home",
+        "about": "About",
+        "skills": "Skills",
+        "projects": "Projects",
+        "contact": "Contact"
+    },
+    "hero": {
+        "title": "Software/Hardware Developer & Designer",
+        "subtitle": "Creating innovative solutions at the intersection of software and hardware",
+        "contact_button": "Contact Me",
+        "projects_button": "View Projects",
+        "scroll_hint": "Scroll to discover"
+    },
+    "skills": {
+        "title": "Skills & Technologies",
+        "subtitle": "Languages, frameworks and tools I use to create innovative solutions",
+        "categories": "Categories"
+    },
+    "companies": {
+        "title": "Professional Experience",
+        "subtitle": "Companies and organizations I have had the privilege to collaborate with",
+        "projects": {
+            "completed": "Projects completed"
+        },
+        "stats": {
+            "companies": "Companies",
+            "years": "Years of Experience",
+            "projects": "Projects Completed",
+            "satisfaction": "Client Satisfaction"
+        }
+    },
+    "projects": {
+        "title": "Featured Projects",
+        "subtitle": "A selection of my most recent and relevant works",
+        "filters": {
+            "all": "All",
+            "ai": "AI",
+            "web": "Web Development",
+            "hardware": "Electronic Development",
+            "full": "Full Stack Development",
+            "control": "Control Systems"
+        },
+        "featured": "Featured",
+        "view_details": "View Details",
+        "modal": {
+            "description": "Description",
+            "features": "Key Features",
+            "close": "Close",
+            "view_project": "View Full Project"
+        }
+    },
+    "contact": {
+        "get_in_touch": "Get in Touch",
+        "name": "Eng. Jorge E. Peña Paz",
+        "email": "jorge.pena0516@gmail.com",
+        "message": "Your message",
+        "send": "Send"
+    },
+    "footer": "© 2025 Jorge Peña - All rights reserved."
+}

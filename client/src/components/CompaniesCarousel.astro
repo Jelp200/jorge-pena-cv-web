@@ -1,0 +1,634 @@
+---
+// src/components/Companies.astro
+import { t } from "../i18n/index.js";
+import empresasData from "../data/empresas.json";
+
+const initialLang =
+    typeof window !== "undefined"
+        ? localStorage.getItem("preferredLang") || "es"
+        : "es";
+
+const { empresas, estadisticas } = empresasData;
+---
+
+<section id="companies" class="py-20 bg-black text-white">
+    <div class="max-w-7xl mx-auto px-4">
+        <!-- Header -->
+        <div class="text-center mb-16">
+            <h2 class="text-4xl md:text-5xl font-bold mb-4" data-i18n="companies.title">
+                {t(initialLang, "companies.title")}
+            </h2>
+            <p class="text-xl text-gray-500 max-w-2xl mx-auto" data-i18n="companies.subtitle">
+                {t(initialLang, "companies.subtitle")}
+            </p>
+        </div>
+
+        <!-- Companies Carousel -->
+        <div class="relative">
+            <!-- Carrusel Container -->
+            <div class="companies-carousel-container">
+                <div 
+                    id="companies-carousel"
+                    class="companies-track flex gap-4 overflow-x-auto snap-x snap-mandatory scrollbar-hide pb-8"
+                    style="scroll-behavior: smooth;"
+                >
+                    {empresas.map((empresa) => (
+                        <div class="companies-slide flex-none w-80 md:w-96 snap-start">
+                            <div class="bg-gray-800/30 rounded-2xl p-8 backdrop-blur-sm border border-gray-700 hover:border-[#E64530] transition-all duration-500 h-full flex flex-col items-center justify-center text-center group">
+                                <!-- Logo de la empresa -->
+                                <div class="mb-6 transform group-hover:scale-110 transition-transform duration-500">
+                                    <div class={`w-20 h-20 bg-gradient-to-br ${empresa.color} rounded-full flex items-center justify-center mx-auto mb-4 shadow-lg`}>
+                                        <span class="text-2xl font-bold text-white">{empresa.iniciales}</span>
+                                    </div>
+                                </div>
+                                
+                                <!-- Información de la empresa -->
+                                <h3 class="text-2xl font-bold text-white mb-2">{empresa.nombre}</h3>
+                                <p class="text-gray-500 mb-4 empresa-puesto" data-empresa-id={empresa.id}>
+                                    {empresa.puesto[initialLang]}
+                                </p>
+                                
+                                <!-- Período y tipo -->
+                                <div class="flex gap-2 mb-4 flex-wrap justify-center">
+                                    <span class="bg-[#E64530]/20 text-[#E64530] px-3 py-1 rounded-full text-sm">
+                                        {empresa.periodo}
+                                    </span>
+                                    <span class="bg-gray-700 text-gray-300 px-3 py-1 rounded-full text-sm empresa-tipo" data-empresa-id={empresa.id}>
+                                        {empresa.tipo[initialLang]}
+                                    </span>
+                                </div>
+                                
+                                <!-- Descripción -->
+                                <p class="text-gray-300 text-sm mb-4 empresa-descripcion" data-empresa-id={empresa.id}>
+                                    {empresa.descripcion[initialLang]}
+                                </p>
+                                
+                                <!-- Tecnologías -->
+                                <div class="flex flex-wrap gap-2 justify-center mt-auto">
+                                    {empresa.tecnologias.slice(0, 3).map((tech) => (
+                                        <span class="bg-gray-700/50 text-gray-300 px-2 py-1 rounded text-xs border border-gray-600">
+                                            {tech}
+                                        </span>
+                                    ))}
+                                    {empresa.tecnologias.length > 3 && (
+                                        <span class="bg-gray-700/50 text-gray-500 px-2 py-1 rounded text-xs border border-gray-600">
+                                            +{empresa.tecnologias.length - 3}
+                                        </span>
+                                    )}
+                                </div>
+                                
+                                <!-- Proyectos completados -->
+                                <div class="mt-4 text-xs text-gray-500">
+                                    <span data-i18n="companies.projects.completed">
+                                        {t(initialLang, "companies.projects.completed")}
+                                    </span>: {empresa.proyectos}
+                                </div>
+                            </div>
+                        </div>
+                    ))}
+                </div>
+            </div>
+
+            <!-- Controles del carrusel -->
+            <div class="flex justify-center items-center gap-6 mt-8">
+                <button 
+                    id="companies-prev"
+                    class="companies-prev bg-[#E64530] hover:bg-[#d63c28] text-white p-4 rounded-full transition-all duration-300 transform hover:scale-110 shadow-lg"
+                >
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" />
+                    </svg>
+                </button>
+                
+                <!-- Dots indicadores -->
+                <div class="companies-dots flex gap-3" id="companies-dots">
+                    <!-- Dots se generan dinámicamente -->
+                </div>
+                
+                <button 
+                    id="companies-next"
+                    class="companies-next bg-[#E64530] hover:bg-[#d63c28] text-white p-4 rounded-full transition-all duration-300 transform hover:scale-110 shadow-lg"
+                >
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+                    </svg>
+                </button>
+            </div>
+        </div>
+
+        <!-- Estadísticas -->
+        <div class="grid grid-cols-2 md:grid-cols-4 gap-6 mt-16">
+            <div class="text-center">
+                <div class="text-3xl md:text-4xl font-bold text-[#E64530] mb-2">
+                    {estadisticas.totalEmpresas}+
+                </div>
+                <div class="text-gray-500" data-i18n="companies.stats.companies">
+                    {t(initialLang, "companies.stats.companies")}
+                </div>
+            </div>
+            <div class="text-center">
+                <div class="text-3xl md:text-4xl font-bold text-[#E64530] mb-2">
+                    {estadisticas.totalAnios}+
+                </div>
+                <div class="text-gray-500" data-i18n="companies.stats.years">
+                    {t(initialLang, "companies.stats.years")}
+                </div>
+            </div>
+            <div class="text-center">
+                <div class="text-3xl md:text-4xl font-bold text-[#E64530] mb-2">
+                    {estadisticas.totalProyectos}+
+                </div>
+                <div class="text-gray-500" data-i18n="companies.stats.projects">
+                    {t(initialLang, "companies.stats.projects")}
+                </div>
+            </div>
+            <div class="text-center">
+                <div class="text-3xl md:text-4xl font-bold text-[#E64530] mb-2">
+                    {estadisticas.satisfaccion}%
+                </div>
+                <div class="text-gray-500" data-i18n="companies.stats.satisfaction">
+                    {t(initialLang, "companies.stats.satisfaction")}
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<script is:inline>
+    // Companies data para internacionalización dinámica
+    const empresasData = {
+        empresas: [
+            {
+                id: 1,
+                puesto: {
+                    es: "Desarrollador de Software y Hardware",
+                    en: "Software and Hardware Developer", 
+                    zh: "软件和硬件开发人员"
+                },
+                tipo: {
+                    es: "Tiempo completo", 
+                    en: "Full-time",
+                    zh: "全职"
+                },
+                descripcion: {
+                    es: "Desarrollo de aplicaciones, protocolos de comunicacion, tarjetas electronicas y soluciones cloud para entornos educativos.",
+                    en: "Development of applications, communication protocols, electronic cards, and cloud solutions for educational environments.",
+                    zh: "为教育环境开发应用程序、通信协议、电子卡和云解决方案."
+                }
+            },
+            {
+                id: 2,
+                puesto: {
+                    es: "Ingeniero de IA",
+                    en: "AI Engineer",
+                    zh: "人工智能工程师"
+                },
+                tipo: {
+                    es: "Medio tiempo",
+                    en: "Part-time", 
+                    zh: "兼职"
+                },
+                descripcion: {
+                    es: "Analisis y procesamiento de documentos digitales para limpieza a traves del desarrollo de un GPT propio para la empresa.",
+                    en: "Analysis and processing of digital documents for cleaning purposes through the development of a company-specific GPT.",
+                    zh: "通过开发公司特定的 GPT 对数字文档进行分析和处理以进行清理."
+                }
+            },
+            {
+                id: 3,
+                puesto: {
+                    es: "Tecnico instalador de HVAC",
+                    en: "HVAC Installation Technician",
+                    zh: "暖通空调安装技术员"
+                },
+                tipo: {
+                    es: "Medio tiempo",
+                    en: "Part-time",
+                    zh: "兼职" 
+                },
+                descripcion: {
+                    es: "Instalacion de aires acondicionados y reparacion de tuberias.",
+                    en: "Air conditioning installation and pipe repair.",
+                    zh: "空调安装及管道维修."
+                }
+            },
+            {
+                id: 4,
+                puesto: {
+                    es: "Desarrolador Full Stack",
+                    en: "Full Stack Developer",
+                    zh: "全栈开发人员"
+                },
+                tipo: {
+                    es: "Tiempo completo",
+                    en: "Full-time",
+                    zh: "全日制"
+                },
+                descripcion: {
+                    es: "Implementación de una estrategia integral de digitalización e inteligencia artificial en el ámbito legislativo.",
+                    en: "Implementation of a comprehensive digitalization and artificial intelligence strategy in the legislative field.",
+                    zh: "立法领域全面实施数字化和人工智能战略."
+                }
+            },
+            {
+                id: 5,
+                puesto: {
+                    es: "Desarrollador Mobile, de Firmware y Hardware",
+                    en: "Mobile, Firmware and Hardware Developer", 
+                    zh: "移动、固件和硬件开发人员"
+                },
+                tipo: {
+                    es: "Pasantias",
+                    en: "Internships",
+                    zh: "实习"
+                },
+                descripcion: {
+                    es: "Desarrollo de un sistema de adquisición y análisis de datos bioeléctricos con Kotlin y Firebase.",
+                    en: "Development of a bioelectrical data acquisition and analysis system using Kotlin and Firebase.",
+                    zh: "使用 Kotlin 和 Firebase 开发生物电数据采集和分析系统."
+                }
+            },
+            {
+                id: 6,
+                puesto: {
+                    es: "Desarrollador Frontend",
+                    en: "Frontend Developer", 
+                    zh: "前端开发人员"
+                },
+                tipo: {
+                    es: "Medio tiempo",
+                    en: "Part-time",
+                    zh: "兼职"
+                },
+                descripcion: {
+                    es: "Diseño, desarrollo e implementación de interfaz de usuario moderna y responsive.",
+                    en: "Design, development, and implementation of modern, responsive user interfaces.",
+                    zh: "设计、开发和实施现代、响应式用户界面."
+                }
+            },
+            {
+                id: 7,
+                puesto: {
+                    es: "Desarrollador Frontend",
+                    en: "Full Stack Developer", 
+                    zh: "全栈开发人员"
+                },
+                tipo: {
+                    es: "Medio tiempo",
+                    en: "Part-time",
+                    zh: "兼职"
+                },
+                descripcion: {
+                    es: "Diseño e implementación de una interfaz web moderna y responsive, junto con un chatbot basado en la API de OpenAI.",
+                    en: "Design and implementation of a modern, responsive web interface, along with a chatbot based on the OpenAI API.",
+                    zh: "设计和实现现代、响应式的 Web 界面以及基于 OpenAI API 的聊天机器人."
+                }
+            },
+            {
+                id: 8,
+                puesto: {
+                    es: "Desarrollador Frontend",
+                    en: "Full Stack Developer", 
+                    zh: "全栈开发人员"
+                },
+                tipo: {
+                    es: "Medio tiempo",
+                    en: "Part-time",
+                    zh: "兼职"
+                },
+                descripcion: {
+                    es: "Diseño e implementación de una interfaz web moderna y responsive, junto con un chatbot basado en la API de OpenAI.",
+                    en: "Design and implementation of a modern, responsive web interface, along with a chatbot based on the OpenAI API.",
+                    zh: "设计和实现现代、响应式的 Web 界面以及基于 OpenAI API 的聊天机器人."
+                }
+            }
+        ]
+    };
+
+    // Companies Carousel functionality
+    function initializeCompaniesCarousel() {
+        const track = document.getElementById('companies-carousel');
+        const prevBtn = document.getElementById('companies-prev');
+        const nextBtn = document.getElementById('companies-next');
+        const dotsContainer = document.getElementById('companies-dots');
+        const slides = document.querySelectorAll('.companies-slide');
+        
+        if (!track || slides.length === 0) return;
+        
+        let currentIndex = 0;
+        const slideWidth = 320; // w-80
+        const gap = 32; // gap-8
+        const totalWidth = slideWidth + gap;
+        
+        // Calcular cuántos slides caben en el viewport
+        function calculateVisibleSlides() {
+            const containerWidth = track.parentElement.clientWidth;
+            return Math.max(1, Math.floor(containerWidth / totalWidth));
+        }
+        
+        // Calcular cuántos dots necesitamos
+        function calculateTotalDots() {
+            const visibleSlides = calculateVisibleSlides();
+            const totalSlides = slides.length;
+            
+            if (totalSlides <= visibleSlides) {
+                return 0;
+            }
+            
+            return Math.ceil(totalSlides / visibleSlides);
+        }
+        
+        // Generar dots dinámicamente
+        function generateDots() {
+            const totalDots = calculateTotalDots();
+            dotsContainer.innerHTML = '';
+            
+            if (totalDots <= 1) {
+                dotsContainer.classList.add('hidden');
+            } else {
+                dotsContainer.classList.remove('hidden');
+            }
+            
+            for (let i = 0; i < totalDots; i++) {
+                const dot = document.createElement('button');
+                dot.className = `companies-dot w-3 h-3 rounded-full transition-all duration-300 ${i === 0 ? 'bg-[#E64530]' : 'bg-gray-600'}`;
+                dot.setAttribute('data-index', i);
+                dot.addEventListener('click', () => {
+                    const visibleSlides = calculateVisibleSlides();
+                    goToSlide(i * visibleSlides);
+                });
+                dotsContainer.appendChild(dot);
+            }
+        }
+        
+        function goToSlide(index) {
+            const visibleSlides = calculateVisibleSlides();
+            const maxIndex = Math.max(0, slides.length - visibleSlides);
+            currentIndex = Math.min(Math.max(index, 0), maxIndex);
+            updateCarousel();
+        }
+        
+        function updateCarousel() {
+            track.scrollTo({
+                left: currentIndex * totalWidth,
+                behavior: 'smooth'
+            });
+            
+            // Update dots
+            const visibleSlides = calculateVisibleSlides();
+            const currentGroup = Math.floor(currentIndex / visibleSlides);
+            const dots = dotsContainer.querySelectorAll('.companies-dot');
+            dots.forEach((dot, index) => {
+                dot.classList.toggle('bg-[#E64530]', index === currentGroup);
+                dot.classList.toggle('bg-gray-600', index !== currentGroup);
+            });
+            
+            // Update button states
+            const hasPrev = currentIndex > 0;
+            const hasNext = currentIndex < slides.length - visibleSlides;
+            
+            prevBtn.disabled = !hasPrev;
+            prevBtn.classList.toggle('opacity-50', !hasPrev);
+            prevBtn.classList.toggle('cursor-not-allowed', !hasPrev);
+            prevBtn.classList.toggle('hover:scale-110', hasPrev);
+            
+            nextBtn.disabled = !hasNext;
+            nextBtn.classList.toggle('opacity-50', !hasNext);
+            nextBtn.classList.toggle('cursor-not-allowed', !hasNext);
+            nextBtn.classList.toggle('hover:scale-110', hasNext);
+        }
+        
+        // Event listeners
+        prevBtn.addEventListener('click', () => {
+            const visibleSlides = calculateVisibleSlides();
+            if (currentIndex > 0) {
+                currentIndex = Math.max(0, currentIndex - visibleSlides);
+                updateCarousel();
+            }
+        });
+        
+        nextBtn.addEventListener('click', () => {
+            const visibleSlides = calculateVisibleSlides();
+            if (currentIndex < slides.length - visibleSlides) {
+                currentIndex = Math.min(slides.length - 1, currentIndex + visibleSlides);
+                updateCarousel();
+            }
+        });
+        
+        // Touch/swipe support
+        let startX = 0;
+        let isDragging = false;
+        
+        const handleDragStart = (e) => {
+            startX = e.pageX || e.touches[0].pageX;
+            isDragging = true;
+            track.style.cursor = 'grabbing';
+        };
+        
+        const handleDragEnd = (e) => {
+            if (!isDragging) return;
+            isDragging = false;
+            track.style.cursor = 'grab';
+            
+            const endX = e.pageX || e.changedTouches[0].pageX;
+            const diff = startX - endX;
+            const visibleSlides = calculateVisibleSlides();
+            
+            if (Math.abs(diff) > 50) {
+                if (diff > 0 && currentIndex < slides.length - visibleSlides) {
+                    currentIndex += visibleSlides;
+                } else if (diff < 0 && currentIndex > 0) {
+                    currentIndex -= visibleSlides;
+                }
+                updateCarousel();
+            }
+        };
+        
+        track.addEventListener('mousedown', handleDragStart);
+        track.addEventListener('touchstart', handleDragStart);
+        track.addEventListener('mouseup', handleDragEnd);
+        track.addEventListener('touchend', handleDragEnd);
+        track.addEventListener('mouseleave', () => {
+            isDragging = false;
+            track.style.cursor = 'grab';
+        });
+        
+        // Handle window resize
+        let resizeTimeout;
+        window.addEventListener('resize', () => {
+            clearTimeout(resizeTimeout);
+            resizeTimeout = setTimeout(() => {
+                generateDots();
+                updateCarousel();
+            }, 250);
+        });
+        
+        // Auto-advance (opcional)
+        let autoAdvanceInterval;
+        function startAutoAdvance() {
+            autoAdvanceInterval = setInterval(() => {
+                const visibleSlides = calculateVisibleSlides();
+                if (currentIndex < slides.length - visibleSlides) {
+                    currentIndex += visibleSlides;
+                } else {
+                    currentIndex = 0;
+                }
+                updateCarousel();
+            }, 5000);
+        }
+        
+        function stopAutoAdvance() {
+            clearInterval(autoAdvanceInterval);
+        }
+        
+        // Pausar auto-advance cuando el usuario interactúa
+        track.addEventListener('mouseenter', stopAutoAdvance);
+        track.addEventListener('touchstart', stopAutoAdvance);
+        track.addEventListener('mouseleave', startAutoAdvance);
+        
+        // Initialize
+        generateDots();
+        updateCarousel();
+        startAutoAdvance();
+    }
+    
+    // Internationalization for companies section
+    function updateCompaniesTexts(lang) {
+        // Actualizar textos estáticos
+        const elements = document.querySelectorAll('[data-i18n]');
+        const translations = {
+            'es': {
+                'companies.title': 'Experiencia Profesional',
+                'companies.subtitle': 'Empresas y organizaciones con las que he tenido el privilegio de colaborar',
+                'companies.projects.completed': 'Proyectos completados',
+                'companies.stats.companies': 'Empresas',
+                'companies.stats.years': 'Años de Experiencia',
+                'companies.stats.projects': 'Proyectos Completados',
+                'companies.stats.satisfaction': 'Satisfacción del Cliente'
+            },
+            'en': {
+                'companies.title': 'Professional Experience',
+                'companies.subtitle': 'Companies and organizations I have had the privilege to collaborate with',
+                'companies.projects.completed': 'Projects completed',
+                'companies.stats.companies': 'Companies',
+                'companies.stats.years': 'Years of Experience',
+                'companies.stats.projects': 'Projects Completed',
+                'companies.stats.satisfaction': 'Client Satisfaction'
+            },
+            'zh': {
+                'companies.title': '专业经验',
+                'companies.subtitle': '我有幸合作过的公司和组织',
+                'companies.projects.completed': '完成项目',
+                'companies.stats.companies': '公司',
+                'companies.stats.years': '经验年数',
+                'companies.stats.projects': '完成项目',
+                'companies.stats.satisfaction': '客户满意度'
+            }
+        };
+        
+        elements.forEach(element => {
+            const key = element.getAttribute('data-i18n');
+            if (translations[lang] && translations[lang][key]) {
+                element.textContent = translations[lang][key];
+            }
+        });
+
+        // Actualizar textos dinámicos de las empresas
+        const puestos = document.querySelectorAll('.empresa-puesto');
+        const tipos = document.querySelectorAll('.empresa-tipo');
+        const descripciones = document.querySelectorAll('.empresa-descripcion');
+        
+        puestos.forEach(element => {
+            const empresaId = parseInt(element.getAttribute('data-empresa-id'));
+            const empresa = empresasData.empresas.find(e => e.id === empresaId);
+            if (empresa && empresa.puesto[lang]) {
+                element.textContent = empresa.puesto[lang];
+            }
+        });
+        
+        tipos.forEach(element => {
+            const empresaId = parseInt(element.getAttribute('data-empresa-id'));
+            const empresa = empresasData.empresas.find(e => e.id === empresaId);
+            if (empresa && empresa.tipo[lang]) {
+                element.textContent = empresa.tipo[lang];
+            }
+        });
+        
+        descripciones.forEach(element => {
+            const empresaId = parseInt(element.getAttribute('data-empresa-id'));
+            const empresa = empresasData.empresas.find(e => e.id === empresaId);
+            if (empresa && empresa.descripcion[lang]) {
+                element.textContent = empresa.descripcion[lang];
+            }
+        });
+    }
+    
+    // Initialize when DOM is ready
+    document.addEventListener('DOMContentLoaded', function() {
+        initializeCompaniesCarousel();
+        
+        // Initialize texts with current language
+        const currentLang = localStorage.getItem('preferredLang') || 'es';
+        updateCompaniesTexts(currentLang);
+    });
+    
+    // Listen for language changes
+    window.addEventListener('languageChanged', (e) => {
+        updateCompaniesTexts(e.detail.language);
+    });
+</script>
+
+<style>
+    .companies-track {
+        cursor: grab;
+        scrollbar-width: none;
+        -ms-overflow-style: none;
+    }
+    
+    .companies-track::-webkit-scrollbar {
+        display: none;
+    }
+    
+    .companies-track:active {
+        cursor: grabbing;
+    }
+    
+    .companies-slide {
+        scroll-snap-align: start;
+    }
+    
+    .scrollbar-hide {
+        -ms-overflow-style: none;
+        scrollbar-width: none;
+    }
+    
+    .scrollbar-hide::-webkit-scrollbar {
+        display: none;
+    }
+    
+    .companies-prev:disabled,
+    .companies-next:disabled {
+        opacity: 0.5;
+        cursor: not-allowed;
+        transform: scale(1);
+    }
+    
+    .companies-prev:disabled:hover,
+    .companies-next:disabled:hover {
+        background-color: #E64530;
+        transform: scale(1);
+    }
+    
+    .companies-dot {
+        transition: all 0.3s ease;
+    }
+    
+    .companies-dot:hover {
+        transform: scale(1.2);
+    }
+    
+    /* Efectos hover mejorados */
+    .companies-slide .group:hover .transform {
+        transform: scale(1.1);
+    }
+</style>

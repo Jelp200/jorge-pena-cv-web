@@ -1,0 +1,662 @@
+---
+// src/components/Skills.astro
+import { t } from "../i18n/index.js";
+import skillsData from "../data/skills.json";
+
+const initialLang =
+    typeof window !== "undefined"
+        ? localStorage.getItem("preferredLang") || "es"
+        : "es";
+
+const { categories } = skillsData;
+const categoryKeys = Object.keys(categories);
+---
+
+<section id="skills" class="py-20 bg-black text-white">
+    <div class="max-w-7xl mx-auto px-4">
+        <!-- Header -->
+        <div class="text-center mb-16">
+            <h2 class="text-4xl md:text-5xl font-bold mb-4" data-i18n="skills.title">
+                {t(initialLang, "skills.title")}
+            </h2>
+            <p class="text-xl text-gray-500 max-w-2xl mx-auto" data-i18n="skills.subtitle">
+                {t(initialLang, "skills.subtitle")}
+            </p>
+        </div>
+
+        <!-- Skills Container -->
+        <div class="grid grid-cols-1 lg:grid-cols-4 gap-8">
+            <!-- Sidebar Navigation -->
+            <div class="lg:col-span-1">
+                <div class="bg-gray-800/20 rounded-xl p-6 backdrop-blur-sm border border-gray-700">
+                    <h3 class="text-lg font-semibold mb-4 text-[#E64530]" data-i18n="skills.categories">
+                        {t(initialLang, "skills.categories")}
+                    </h3>
+                    <nav class="space-y-2" id="skills-nav">
+                        {categoryKeys.map((categoryKey, index) => {
+                            const category = categories[categoryKey];
+                            const isActive = index === 0;
+                            return (
+                                <button
+                                    class={`w-full flex items-center gap-3 px-4 py-3 rounded-lg transition-all duration-300 hover:bg-gray-700/50 hover:translate-x-2 skill-category-btn ${isActive ? 'active bg-[#E64530] text-white' : 'text-gray-500'}`}
+                                    data-category={categoryKey}
+                                    data-i18n-category={categoryKey}
+                                >
+                                    <span class="text-2xl">{category.icon}</span>
+                                    <span class="font-medium skill-category-title">
+                                        {category.title[initialLang]}
+                                    </span>
+                                </button>
+                            );
+                        })}
+                    </nav>
+                </div>
+            </div>
+
+            <!-- Content Area -->
+            <div class="lg:col-span-3">
+                {categoryKeys.map((categoryKey, index) => {
+                    const category = categories[categoryKey];
+                    const isActive = index === 0;
+                    const hasManySkills = category.skills.length > 4;
+                    
+                    return (
+                        <div 
+                            id={`${categoryKey}-content`} 
+                            class={`skill-content ${isActive ? 'active' : 'hidden'}`}
+                        >
+                            {hasManySkills ? (
+                                <!-- Carrusel para categorías con más de 4 elementos -->
+                                <div class="carousel-container relative">
+                                    <div 
+                                        id={`${categoryKey}-carousel`}
+                                        class="carousel-track flex gap-3 overflow-x-auto snap-x snap-mandatory scrollbar-hide pb-4"
+                                        style="scroll-behavior: smooth;"
+                                    >
+                                        {category.skills.map((skill, skillIndex) => {
+                                            const hasContent = skill.code?.content || skill.description;
+                                            return (
+                                                <div 
+                                                    class="carousel-slide flex-none w-80 snap-start"
+                                                    data-index={skillIndex}
+                                                >
+                                                    <div class={`bg-gray-800/40 rounded-xl backdrop-blur-sm border border-gray-700 hover:border-[#E64530] transition-all duration-300 h-full ${hasContent ? 'p-6' : 'p-4 flex items-center justify-center min-h-[140px]'}`}>
+                                                        <div class="flex items-center gap-4 mb-4">
+                                                            {skill.icon && (
+                                                                <img 
+                                                                    src={skill.icon} 
+                                                                    alt={typeof skill.name === 'object' ? skill.name[initialLang] : skill.name} 
+                                                                    class="w-12 h-12" 
+                                                                    onerror={`this.src='${skill.fallbackIcon || skill.icon}'; this.onerror=null;`}
+                                                                />
+                                                            )}
+                                                            {!skill.icon && typeof skill.icon === 'string' && skill.icon.length === 2 && (
+                                                                <span class="text-4xl">{skill.icon}</span>
+                                                            )}
+                                                            <div>
+                                                                <h4 class="text-xl font-bold skill-item-name">
+                                                                    {typeof skill.name === 'object' ? skill.name[initialLang] : skill.name}
+                                                                </h4>
+                                                                <div class="flex gap-1 mt-1">
+                                                                    {Array.from({ length: 5 }, (_, i) => (
+                                                                        <div 
+                                                                            class={`w-3 h-3 rounded-full ${i < skill.level ? 'bg-[#E64530]' : 'bg-gray-600'}`}
+                                                                        ></div>
+                                                                    ))}
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        
+                                                        {hasContent && (
+                                                            <div class="skill-content-area">
+                                                                {skill.code?.content && (
+                                                                    <div class="bg-gray-900 rounded-lg p-4 font-mono text-sm">
+                                                                        <pre><code class={`language-${skill.code.language}`}>{skill.code.content}</code></pre>
+                                                                    </div>
+                                                                )}
+                                                                
+                                                                {skill.description && (
+                                                                    <div class="bg-gray-900 rounded-lg p-4 mt-3">
+                                                                        <p class="text-gray-500 skill-item-description">
+                                                                            {typeof skill.description === 'object' ? skill.description[initialLang] : skill.description}
+                                                                        </p>
+                                                                    </div>
+                                                                )}
+                                                            </div>
+                                                        )}
+                                                    </div>
+                                                </div>
+                                            );
+                                        })}
+                                    </div>
+                                    
+                                    <!-- Controles del carrusel -->
+                                    <div class="flex justify-center items-center gap-4 mt-6">
+                                        <button 
+                                            class={`carousel-prev bg-[#E64530] hover:bg-[#d63c28] text-white p-3 rounded-full transition-all duration-300 transform hover:scale-110 ${categoryKey}-prev`}
+                                            data-category={categoryKey}
+                                        >
+                                            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" />
+                                            </svg>
+                                        </button>
+                                        
+                                        <!-- Dots se generarán dinámicamente -->
+                                        <div class="carousel-dots flex gap-2" id={`${categoryKey}-dots`}></div>
+                                        
+                                        <button 
+                                            class={`carousel-next bg-[#E64530] hover:bg-[#d63c28] text-white p-3 rounded-full transition-all duration-300 transform hover:scale-110 ${categoryKey}-next`}
+                                            data-category={categoryKey}
+                                        >
+                                            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+                                            </svg>
+                                        </button>
+                                    </div>
+                                </div>
+                            ) : (
+                                <!-- Grid normal para categorías con 4 o menos elementos -->
+                                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                                    {category.skills.map((skill) => {
+                                        const hasContent = skill.code?.content || skill.description;
+                                        return (
+                                            <div class={`bg-gray-800/40 rounded-xl backdrop-blur-sm border border-gray-700 hover:border-[#E64530] transition-all duration-300 ${hasContent ? 'p-6' : 'p-4 flex items-center justify-center min-h-[140px]'}`}>
+                                                <div class="flex items-center gap-4 mb-4">
+                                                    {skill.icon && (
+                                                        <img 
+                                                            src={skill.icon} 
+                                                            alt={typeof skill.name === 'object' ? skill.name[initialLang] : skill.name} 
+                                                            class="w-12 h-12" 
+                                                            onerror={`this.src='${skill.fallbackIcon || skill.icon}'; this.onerror=null;`}
+                                                        />
+                                                    )}
+                                                    {!skill.icon && typeof skill.icon === 'string' && skill.icon.length === 2 && (
+                                                        <span class="text-4xl">{skill.icon}</span>
+                                                    )}
+                                                    <div>
+                                                        <h4 class="text-xl font-bold skill-item-name">
+                                                            {typeof skill.name === 'object' ? skill.name[initialLang] : skill.name}
+                                                        </h4>
+                                                        <div class="flex gap-1 mt-1">
+                                                            {Array.from({ length: 5 }, (_, i) => (
+                                                                <div 
+                                                                    class={`w-3 h-3 rounded-full ${i < skill.level ? 'bg-[#E64530]' : 'bg-gray-600'}`}
+                                                                ></div>
+                                                            ))}
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                
+                                                {hasContent && (
+                                                    <div class="skill-content-area">
+                                                        {skill.code?.content && (
+                                                            <div class="bg-gray-900 rounded-lg p-4 font-mono text-sm">
+                                                                <pre><code class={`language-${skill.code.language}`}>{skill.code.content}</code></pre>
+                                                            </div>
+                                                        )}
+                                                        
+                                                        {skill.description && (
+                                                            <div class="bg-gray-900 rounded-lg p-4 mt-3">
+                                                                <p class="text-gray-500 skill-item-description">
+                                                                    {typeof skill.description === 'object' ? skill.description[initialLang] : skill.description}
+                                                                </p>
+                                                            </div>
+                                                        )}
+                                                    </div>
+                                                )}
+                                            </div>
+                                        );
+                                    })}
+                                </div>
+                            )}
+                        </div>
+                    );
+                })}
+            </div>
+        </div>
+    </div>
+</section>
+
+<script is:inline>
+    // Skills data para internacionalización
+    const skillsData = {
+        "categories": {
+            "languages": {
+                "title": {
+                    "es": "Lenguajes",
+                    "en": "Languages",
+                    "zh": "编程语言"
+                },
+                "icon": "💻"
+            },
+            "frameworks": {
+                "title": {
+                    "es": "Frameworks", 
+                    "en": "Frameworks",
+                    "zh": "框架"
+                },
+                "icon": "⚡"
+            },
+            "dev-tools": {
+                "title": {
+                    "es": "Herramientas (Soft)",
+                    "en": "Software Tools",
+                    "zh": "软件工具"
+                },
+                "icon": "🧑🏽‍💻"
+            },
+            "hrdw-tools": {
+                "title": {
+                    "es": "Herramientas (Hrdw)",
+                    "en": "Hardware Tools", 
+                    "zh": "硬件工具"
+                },
+                "icon": "🛠️"
+            },
+            "knoladge": {
+                "title": {
+                    "es": "Conocimiento",
+                    "en": "Knowledge",
+                    "zh": "知识"
+                },
+                "icon": "🤓"
+            }
+        }
+    };
+
+    // Skills Navigation
+    function initializeSkillsNavigation() {
+        const categoryButtons = document.querySelectorAll('.skill-category-btn');
+        const contentSections = document.querySelectorAll('.skill-content');
+        
+        categoryButtons.forEach(button => {
+            button.addEventListener('click', function() {
+                const category = this.getAttribute('data-category');
+                
+                // Update active button
+                categoryButtons.forEach(btn => {
+                    btn.classList.remove('active', 'bg-[#E64530]', 'text-white');
+                    btn.classList.add('text-gray-500');
+                });
+                this.classList.add('active', 'bg-[#E64530]', 'text-white');
+                this.classList.remove('text-gray-500');
+                
+                // Show corresponding content
+                contentSections.forEach(section => {
+                    section.classList.add('hidden');
+                    section.classList.remove('active');
+                });
+                
+                const targetSection = document.getElementById(`${category}-content`);
+                if (targetSection) {
+                    targetSection.classList.remove('hidden');
+                    targetSection.classList.add('active');
+                    
+                    // Re-initialize carousel for the active category
+                    setTimeout(initializeCarousels, 50);
+                }
+            });
+        });
+    }
+
+    // Carrusel functionality
+    function initializeCarousels() {
+        const carousels = document.querySelectorAll('.carousel-container');
+        
+        carousels.forEach(container => {
+            // Solo inicializar carruseles visibles
+            if (container.closest('.skill-content.active')) {
+                const track = container.querySelector('.carousel-track');
+                const prevBtn = container.querySelector('.carousel-prev');
+                const nextBtn = container.querySelector('.carousel-next');
+                const dotsContainer = container.querySelector('.carousel-dots');
+                const slides = container.querySelectorAll('.carousel-slide');
+                
+                // Si ya está inicializado, saltar
+                if (track.hasAttribute('data-initialized')) {
+                    return;
+                }
+                
+                const category = prevBtn?.getAttribute('data-category');
+                if (!category) return;
+                
+                let currentIndex = 0;
+                const slideWidth = 320;
+                const gap = 24;
+                const totalWidth = slideWidth + gap;
+                
+                // Calcular cuántos slides caben en el viewport
+                function calculateVisibleSlides() {
+                    const containerWidth = track.parentElement.clientWidth;
+                    return Math.max(1, Math.floor(containerWidth / totalWidth));
+                }
+                
+                // Calcular cuántos dots necesitamos
+                function calculateTotalDots() {
+                    const visibleSlides = calculateVisibleSlides();
+                    const totalSlides = slides.length;
+                    
+                    if (totalSlides <= visibleSlides) {
+                        return 0;
+                    }
+                    
+                    return Math.ceil(totalSlides / visibleSlides);
+                }
+                
+                // Obtener el índice del grupo actual
+                function getCurrentGroup() {
+                    const visibleSlides = calculateVisibleSlides();
+                    return Math.floor(currentIndex / visibleSlides);
+                }
+                
+                // Generar dots dinámicamente
+                function generateDots() {
+                    const totalDots = calculateTotalDots();
+                    dotsContainer.innerHTML = '';
+                    
+                    if (totalDots <= 1) {
+                        dotsContainer.classList.add('hidden');
+                    } else {
+                        dotsContainer.classList.remove('hidden');
+                    }
+                    
+                    for (let i = 0; i < totalDots; i++) {
+                        const dot = document.createElement('button');
+                        dot.className = `carousel-dot w-3 h-3 rounded-full transition-all duration-300 ${i === 0 ? 'bg-[#E64530]' : 'bg-gray-600'}`;
+                        dot.setAttribute('data-category', category);
+                        dot.setAttribute('data-group', i);
+                        dot.addEventListener('click', () => {
+                            const visibleSlides = calculateVisibleSlides();
+                            goToSlide(i * visibleSlides);
+                        });
+                        dotsContainer.appendChild(dot);
+                    }
+                }
+                
+                function goToSlide(index) {
+                    const visibleSlides = calculateVisibleSlides();
+                    const maxIndex = Math.max(0, slides.length - visibleSlides);
+                    currentIndex = Math.min(Math.max(index, 0), maxIndex);
+                    updateCarousel();
+                }
+                
+                function updateCarousel() {
+                    if (!track) return;
+                    
+                    track.scrollTo({
+                        left: currentIndex * totalWidth,
+                        behavior: 'smooth'
+                    });
+                    
+                    const currentGroup = getCurrentGroup();
+                    const dots = dotsContainer.querySelectorAll('.carousel-dot');
+                    dots.forEach((dot, index) => {
+                        dot.classList.toggle('bg-[#E64530]', index === currentGroup);
+                        dot.classList.toggle('bg-gray-600', index !== currentGroup);
+                    });
+                    
+                    const visibleSlides = calculateVisibleSlides();
+                    const hasPrev = currentIndex > 0;
+                    const hasNext = currentIndex < slides.length - visibleSlides;
+                    
+                    // Actualizar botones prev/next
+                    if (prevBtn) {
+                        prevBtn.disabled = !hasPrev;
+                        prevBtn.classList.toggle('opacity-50', !hasPrev);
+                        prevBtn.classList.toggle('cursor-not-allowed', !hasPrev);
+                        prevBtn.classList.toggle('hover:scale-110', hasPrev);
+                    }
+                    
+                    if (nextBtn) {
+                        nextBtn.disabled = !hasNext;
+                        nextBtn.classList.toggle('opacity-50', !hasNext);
+                        nextBtn.classList.toggle('cursor-not-allowed', !hasNext);
+                        nextBtn.classList.toggle('hover:scale-110', hasNext);
+                    }
+                }
+                
+                // Event listeners para botones de navegación
+                if (prevBtn) {
+                    prevBtn.addEventListener('click', () => {
+                        const visibleSlides = calculateVisibleSlides();
+                        if (currentIndex > 0) {
+                            currentIndex = Math.max(0, currentIndex - visibleSlides);
+                            updateCarousel();
+                        }
+                    });
+                }
+                
+                if (nextBtn) {
+                    nextBtn.addEventListener('click', () => {
+                        const visibleSlides = calculateVisibleSlides();
+                        if (currentIndex < slides.length - visibleSlides) {
+                            currentIndex = Math.min(slides.length - 1, currentIndex + visibleSlides);
+                            updateCarousel();
+                        }
+                    });
+                }
+                
+                // Touch/swipe support
+                let startX = 0;
+                let isDragging = false;
+                
+                const handleDragStart = (e) => {
+                    startX = e.pageX || e.touches[0].pageX;
+                    isDragging = true;
+                    track.style.cursor = 'grabbing';
+                };
+                
+                const handleDragEnd = (e) => {
+                    if (!isDragging) return;
+                    isDragging = false;
+                    track.style.cursor = 'grab';
+                    
+                    const endX = e.pageX || e.changedTouches[0].pageX;
+                    const diff = startX - endX;
+                    const visibleSlides = calculateVisibleSlides();
+                    
+                    if (Math.abs(diff) > 50) {
+                        if (diff > 0 && currentIndex < slides.length - visibleSlides) {
+                            currentIndex += visibleSlides;
+                        } else if (diff < 0 && currentIndex > 0) {
+                            currentIndex -= visibleSlides;
+                        }
+                        updateCarousel();
+                    }
+                };
+                
+                track.addEventListener('mousedown', handleDragStart);
+                track.addEventListener('touchstart', handleDragStart);
+                track.addEventListener('mouseup', handleDragEnd);
+                track.addEventListener('touchend', handleDragEnd);
+                track.addEventListener('mouseleave', () => {
+                    isDragging = false;
+                    track.style.cursor = 'grab';
+                });
+                
+                // Handle window resize
+                let resizeTimeout;
+                const resizeHandler = () => {
+                    clearTimeout(resizeTimeout);
+                    resizeTimeout = setTimeout(() => {
+                        generateDots();
+                        updateCarousel();
+                    }, 250);
+                };
+                
+                window.addEventListener('resize', resizeHandler);
+                
+                // Marcar como inicializado
+                track.setAttribute('data-initialized', 'true');
+                container.dataset.resizeHandler = resizeHandler;
+                
+                // Initialize
+                generateDots();
+                updateCarousel();
+            }
+        });
+    }
+
+    // Internationalization for skills section
+    function updateSkillsTexts(lang) {
+        // Actualizar textos estáticos
+        const elements = document.querySelectorAll('[data-i18n]');
+        const translations = {
+            'es': {
+                'skills.title': 'Habilidades & Tecnologías',
+                'skills.subtitle': 'Lenguajes, frameworks y herramientas que uso para crear soluciones innovadoras',
+                'skills.categories': 'Categorías'
+            },
+            'en': {
+                'skills.title': 'Skills & Technologies',
+                'skills.subtitle': 'Languages, frameworks and tools I use to create innovative solutions',
+                'skills.categories': 'Categories'
+            },
+            'zh': {
+                'skills.title': '技能与技术',
+                'skills.subtitle': '我用来创建创新解决方案的语言、框架和工具',
+                'skills.categories': '分类'
+            }
+        };
+        
+        elements.forEach(element => {
+            const key = element.getAttribute('data-i18n');
+            if (translations[lang] && translations[lang][key]) {
+                element.textContent = translations[lang][key];
+            }
+        });
+
+        // Actualizar títulos de categorías en el sidebar
+        const categoryTitles = document.querySelectorAll('.skill-category-title');
+        categoryTitles.forEach(titleElement => {
+            const button = titleElement.closest('.skill-category-btn');
+            const categoryKey = button?.getAttribute('data-i18n-category');
+            if (categoryKey && skillsData.categories[categoryKey]?.title[lang]) {
+                titleElement.textContent = skillsData.categories[categoryKey].title[lang];
+            }
+        });
+    }
+
+    // Initialize everything when DOM is ready
+    document.addEventListener('DOMContentLoaded', function() {
+        // Syntax highlighting
+        const codeBlocks = document.querySelectorAll('pre code');
+        codeBlocks.forEach(block => {
+            block.classList.add('text-green-400');
+        });
+
+        // Initialize navigation and carousels
+        initializeSkillsNavigation();
+        setTimeout(initializeCarousels, 100);
+        
+        // Initialize texts with current language
+        const currentLang = localStorage.getItem('preferredLang') || 'es';
+        updateSkillsTexts(currentLang);
+    });
+
+    // Listen for language changes
+    window.addEventListener('languageChanged', (e) => {
+        updateSkillsTexts(e.detail.language);
+    });
+</script>
+
+<style>
+    .skill-category-btn.active {
+        background-color: #E64530;
+        color: white;
+        transform: translateX(8px);
+    }
+
+    .skill-content {
+        opacity: 0;
+        transform: translateY(20px);
+        transition: all 0.5s ease-in-out;
+    }
+
+    .skill-content.active {
+        opacity: 1;
+        transform: translateY(0);
+    }
+
+    pre code {
+        font-family: 'Fira Code', 'Monaco', 'Cascadia Code', monospace;
+        line-height: 1.5;
+        color: #d6941b !important;
+    }
+
+    /* Custom scrollbar for code blocks */
+    pre {
+        scrollbar-width: thin;
+        scrollbar-color: #E64530 #1a1a1a;
+        max-height: 200px;
+        overflow-y: auto;
+    }
+
+    pre::-webkit-scrollbar {
+        height: 8px;
+    }
+
+    pre::-webkit-scrollbar-track {
+        background: #1a1a1a;
+        border-radius: 4px;
+    }
+
+    pre::-webkit-scrollbar-thumb {
+        background: #E64530;
+        border-radius: 4px;
+    }
+
+    /* Carrusel styles */
+    .carousel-track {
+        cursor: grab;
+        scrollbar-width: none;
+        -ms-overflow-style: none;
+    }
+
+    .carousel-track::-webkit-scrollbar {
+        display: none;
+    }
+
+    .carousel-track:active {
+        cursor: grabbing;
+    }
+
+    .carousel-slide {
+        scroll-snap-align: start;
+    }
+
+    .scrollbar-hide {
+        -ms-overflow-style: none;
+        scrollbar-width: none;
+    }
+
+    .scrollbar-hide::-webkit-scrollbar {
+        display: none;
+    }
+
+    .carousel-prev:disabled,
+    .carousel-next:disabled {
+        opacity: 0.5;
+        cursor: not-allowed;
+        transform: scale(1);
+    }
+
+    .carousel-prev:disabled:hover,
+    .carousel-next:disabled:hover {
+        background-color: #E64530;
+        transform: scale(1);
+    }
+
+    .carousel-dot {
+        transition: all 0.3s ease;
+    }
+
+    .carousel-dot:hover {
+        transform: scale(1.2);
+    }
+
+    /* Estilos para elementos sin contenido */
+    .skill-content-area {
+        transition: all 0.3s ease;
+    }
+</style>

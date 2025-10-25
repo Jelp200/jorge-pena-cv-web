@@ -1,0 +1,242 @@
+---
+//* IMPORTS
+import '../styles/global.css'
+import Navigation from '../components/Navbar.astro'
+import Footer from '../components/Footer.astro'
+
+//* EXPORTS
+export interface Props {
+	title: string;
+	description?: string;
+	canonicalUrl?: string;
+	noIndex?: boolean;
+}
+
+const { 
+	title, 
+	description = "Ingeniero en Comunicaciones y Electrónica especializado en desarrollo de sistemas embebidos, APIs, IoT e inteligencia artificial.",
+	canonicalUrl,
+	noIndex = false 
+} = Astro.props;
+
+const fullTitle = `${title} - Jorge Peña`;
+const currentUrl = Astro.url;
+const baseUrl = Astro.site || 'https://jorgepena.dev';
+---
+
+<!doctype html>
+<html lang="es">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<meta name="author" content="Jorge Eduardo Peña Paz">
+		
+		<!-- Primary Meta Tags -->
+		<title>{fullTitle}</title>
+		<meta name="title" content={fullTitle} />
+		<meta name="description" content={description} />
+		<meta name="keywords" content="ingeniero, comunicaciones, electrónica, desarrollo, sistemas embebidos, APIs, IoT, inteligencia artificial, proyectos" />
+		<meta name="robots" content={noIndex ? "noindex, nofollow" : "index, follow"} />
+		
+		<!-- Canonical URL -->
+		<link rel="canonical" href={canonicalUrl || currentUrl.toString()} />
+
+		<!-- Favicon -->
+		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+		<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+		<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+		<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+
+		<!-- Open Graph / Facebook -->
+		<meta property="og:type" content="website" />
+		<meta property="og:url" content={currentUrl.toString()} />
+		<meta property="og:title" content={fullTitle} />
+		<meta property="og:description" content={description} />
+		<meta property="og:image" content={`${baseUrl}/og-image.jpg`} />
+		<meta property="og:site_name" content="Jorge Peña - Portfolio" />
+
+		<!-- Twitter -->
+		<meta property="twitter:card" content="summary_large_image" />
+		<meta property="twitter:url" content={currentUrl.toString()} />
+		<meta property="twitter:title" content={fullTitle} />
+		<meta property="twitter:description" content={description} />
+		<meta property="twitter:image" content={`${baseUrl}/og-image.jpg`} />
+
+		<!-- Preload crítico -->
+		<link rel="preconnect" href="https://fonts.googleapis.com">
+		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+		<link href="https://fonts.googleapis.com/css2?family=Coda:wght@400;800&display=swap" rel="stylesheet">
+
+		<!-- Schema.org markup -->
+		<script type="application/ld+json">
+		{
+			"@context": "https://schema.org",
+			"@type": "Person",
+			"name": "Jorge Eduardo Peña Paz",
+			"jobTitle": "Ingeniero en Comunicaciones y Electrónica",
+			"url": "{baseUrl}",
+			"sameAs": [
+				"https://github.com/tuusuario",
+				"https://linkedin.com/in/tuusuario"
+			],
+			"knowsAbout": ["Sistemas Embebidos", "APIs", "IoT", "Inteligencia Artificial", "Desarrollo Full Stack"]
+		}
+		</script>
+
+		<meta name="generator" content={Astro.generator} />
+	</head>
+	<body class="bg-black text-white antialiased">
+		<!-- Navigation -->
+		<Navigation />
+
+		<!-- Main Content -->
+		<main id="main-content">
+			<slot />
+		</main>
+
+		<!-- Footer -->
+		<Footer />
+
+		<!-- Scripts de internacionalización global -->
+		<script>
+			// Manejo global del idioma
+			(function() {
+				// Establecer idioma inicial
+				const savedLang = localStorage.getItem('preferredLang');
+				if (!savedLang) {
+					// Detectar idioma del navegador
+					const browserLang = navigator.language || navigator.userLanguage;
+					const supportedLangs = ['es', 'en', 'zh'];
+					const detectedLang = supportedLangs.find(lang => browserLang.startsWith(lang)) || 'es';
+					localStorage.setItem('preferredLang', detectedLang);
+				}
+
+				// Función para cambiar idioma
+				window.changeLanguage = function(lang) {
+					localStorage.setItem('preferredLang', lang);
+					document.documentElement.lang = lang;
+					
+					// Disparar evento para notificar a los componentes
+					window.dispatchEvent(new CustomEvent('languageChanged', {
+						detail: { language: lang }
+					}));
+					
+					// Actualizar textos después de un pequeño delay
+					setTimeout(() => {
+						if (typeof updateAllTexts === 'function') {
+							updateAllTexts(lang);
+						}
+					}, 100);
+				};
+
+				// Inicializar idioma al cargar
+				document.addEventListener('DOMContentLoaded', function() {
+					const currentLang = localStorage.getItem('preferredLang') || 'es';
+					document.documentElement.lang = currentLang;
+				});
+
+				// Función global para actualizar todos los textos
+				window.updateAllTexts = function(lang) {
+					// Esta función será extendida por cada componente
+					const updaters = [
+						'updateNavbarTexts',
+						'updateHeroTexts', 
+						'updateAboutTexts',
+						'updateSkillsTexts',
+						'updateProjectsTexts',
+						'updateContactTexts',
+						'updateFooterTexts',
+						'updateProjectTexts'
+					];
+
+					updaters.forEach(updater => {
+						if (typeof window[updater] === 'function') {
+							window[updater](lang);
+						}
+					});
+				};
+			})();
+		</script>
+
+		<!-- Smooth Scroll Polyfill para navegadores antiguos -->
+		<script>
+			// Polyfill para smooth scroll
+			if (!('scrollBehavior' in document.documentElement.style)) {
+				import('https://cdn.jsdelivr.net/npm/smoothscroll-polyfill@0.4.4/dist/smoothscroll.min.js')
+				.then(module => {
+					module.polyfill();
+				});
+			}
+
+			// Manejo de scroll suave para anchors
+			document.addEventListener('DOMContentLoaded', function() {
+				document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+					anchor.addEventListener('click', function (e) {
+						e.preventDefault();
+						const target = document.querySelector(this.getAttribute('href'));
+						if (target) {
+							target.scrollIntoView({
+								behavior: 'smooth',
+								block: 'start'
+							});
+						}
+					});
+				});
+			});
+		</script>
+	</body>
+</html>
+
+<style is:global>
+	html,
+	body {
+		font-family: "Coda", system-ui;
+		margin: 0;
+		width: 100%;
+		height: 100%;
+		scroll-behavior: smooth;
+	}
+
+	/* Scrollbar personalizado */
+	::-webkit-scrollbar {
+		width: 8px;
+	}
+
+	::-webkit-scrollbar-track {
+		background: #1f2937;
+	}
+
+	::-webkit-scrollbar-thumb {
+		background: #E64530;
+		border-radius: 4px;
+	}
+
+	::-webkit-scrollbar-thumb:hover {
+		background: #d63c28;
+	}
+
+	/* Mejoras de accesibilidad */
+	@media (prefers-reduced-motion: reduce) {
+		* {
+			animation-duration: 0.01ms !important;
+			animation-iteration-count: 1 !important;
+			transition-duration: 0.01ms !important;
+		}
+		
+		html {
+			scroll-behavior: auto;
+		}
+	}
+
+	/* Focus visible para accesibilidad */
+	button:focus-visible,
+	a:focus-visible {
+		outline: 2px solid #E64530;
+		outline-offset: 2px;
+	}
+
+	/* Mejoras de rendimiento */
+	img {
+		content-visibility: auto;
+	}
+</style>

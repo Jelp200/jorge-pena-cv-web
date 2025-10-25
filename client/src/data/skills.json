@@ -1,0 +1,464 @@
+{
+    "categories": {
+        "languages": {
+            "title": {
+                "es": "Lenguajes",
+                "en": "Languages",
+                "zh": "编程语言"
+            },
+            "icon": "💻",
+            "skills": [
+                {
+                    "name": "C",
+                    "icon": "/imgs/c.png",
+                    "fallbackIcon": "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/c/c-original.svg",
+                    "level": 5,
+                    "code": {
+                        "language": "c",
+                        "content": "// Ejemplo factorial recursivo en C\nlong Factorial(int a) {\n\tif (a <= 1) return 1;\n\telse return (a * Factorial(n - 1));\n}"
+                    }
+                },
+                {
+                    "name": "C++",
+                    "icon": "/imgs/c++.png",
+                    "fallbackIcon": "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/cpp/cpp-original.svg",
+                    "level": 4,
+                    "code": {
+                        "language": "c++",
+                        "content": "// Delcarar una clase en C++\nclass NombreClase {\n\tpublic:\n\t\ttipo1 nombreAtributo1;\n\t\tNombreClase(); // Constructor\n\t\tvoid nombreMetodo();\n};"
+                    }
+                },
+                {
+                    "name": "Bash",
+                    "icon": "/imgs/sh.png",
+                    "fallbackIcon": "/imgs/sh.png",
+                    "level": 4,
+                    "code": {
+                        "language": "sh",
+                        "content": "# Imprimir en pantalla con bash\nmsj=\"Jelp200\"\nedad=25\necho \"Usuario: $msj1\"\nprintf \"Edad: %i\" \"$edad\""
+                    }
+                },
+                {
+                    "name": "Matlab",
+                    "icon": "/imgs/m.png",
+                    "fallbackIcon": "/imgs/m.png",
+                    "level": 4,
+                    "code": {
+                        "language": "m",
+                        "content": "% If simple en Matlab\nx = 5;\nif x > 10\n\tdisp('OK')\nend"
+                    }
+                },
+                {
+                    "name": "C#",
+                    "icon": "/imgs/cs.png",
+                    "fallbackIcon": "/imgs/cs.png",
+                    "level": 3,
+                    "code": {
+                        "language": "cs",
+                        "content": "class Program {\n\tstatic void Main() {\n\t\tConsole.Write(\"Hola, Mundo!\");\n\t}\n}"
+                    }
+                },
+                {
+                    "name": "Python",
+                    "icon": "/imgs/py.png",
+                    "fallbackIcon": "/imgs/py.png",
+                    "level": 3,
+                    "code": {
+                        "language": "py",
+                        "content": "# Definicion de tuplas\nESIMES = [\"ESIMEZ\", \"ESIMEC\", \"ESIMEA\"]\nprint(ESIMES)\nprint(ESIMES[-1])\nprint(ESIMES[0 : 2])"
+                    }
+                },
+                {
+                    "name": "JavaScript",
+                    "icon": "/imgs/js.png",
+                    "fallbackIcon": "/imgs/js.png",
+                    "level": 3,
+                    "code": {
+                        "language": "js",
+                        "content": "//Funcion basica en JS\nfunction sumar(x, y) {\n\treturn x + y;\n}\n// Suma dos numeros sin flecha"
+                    }
+                },
+                {
+                    "name": "VHDL",
+                    "icon": "/imgs/js.png",
+                    "fallbackIcon": "/imgs/js.png",
+                    "level": 2,
+                    "code": {
+                        "language": "js",
+                        "content": "//Funcion basica en JS\nfunction sumar(x, y) {\n\treturn x + y;\n}\n// Suma dos numeros sin flecha"
+                    }
+                },
+                {
+                    "name": "TypeScript",
+                    "icon": "/imgs/ts.png",
+                    "fallbackIcon": "/imgs/ts.png",
+                    "level": 2,
+                    "code": {
+                        "language": "ts",
+                        "content": "//Funcion basica en TS\nconst sumarArrow = (x: number, y: number): number => {\n\treturn x + y;\n};\n// Suma dos numeros con flecha"
+                    }
+                },
+                {
+                    "name": "Visual Basic",
+                    "icon": "/imgs/vb.png",
+                    "fallbackIcon": "/imgs/vb.png",
+                    "level": 1,
+                    "code": {
+                        "language": "vb",
+                        "content": "Module Module1\n\tSub Main()\n\t\tConsole.WriteLine(\"Hola mundo\")\n\t\tConsole.ReadKey()\n\tEnd Sub\nEnd Module"
+                    }
+                }
+            ]
+        },
+        "frameworks": {
+            "title": {
+                "es": "Frameworks",
+                "en": "Frameworks",
+                "zh": "框架"
+            },
+            "icon": "⚡",
+            "skills": [
+                {
+                    "name": "Astro",
+                    "icon": "/imgs/astro.png",
+                    "fallbackIcon": "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/astro/astro-original.svg",
+                    "level": 4,
+                    "code": {
+                        "language": "astro",
+                        "content": "// Astro Component\n<Layout title = 'Frameworks'>\n\t<Navbar />\n\t<Hero />\n\t<Footer />\n<Layout />"
+                    }
+                },
+                {
+                    "name": "TailwindCSS",
+                    "icon": "/imgs/tcss.png",
+                    "fallbackIcon": "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/tailwindcss/tailwindcss-original.svg",
+                    "level": 4,
+                    "code": {
+                        "language": "jsx",
+                        "content": "<!-- Styles -->\n<section class='text-green'>\n\t<h1>\n\t\tHola, Mundo!\n\t<h1/>\n<section />"
+                    }
+                },
+                {
+                    "name": "React",
+                    "icon": "/imgs/react.png",
+                    "fallbackIcon": "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/react/react-original.svg",
+                    "level": 3,
+                    "code": {
+                        "language": "jsx",
+                        "content": "// React Component\nfunction Welcome({ name }) {\n\treturn <h1>\n\t\tHola, {name}!\n\t</h1>;\n}"
+                    }
+                },
+                {
+                    "name": "NodeJS",
+                    "icon": "/imgs/nojs.png",
+                    "fallbackIcon": "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nodejs/nodejs-original.svg",
+                    "level": 3,
+                    "code": {
+                        "language": "jsx",
+                        "content": "const http = require('http');\n\nhttp.createServer((req, res) => {\n\tres.writeHead(200, {'Content-Type': 'text/plain'});\n\tres.end('Hola, Mundo!');\n}).listen(8080);"
+                    }
+                },
+                {
+                    "name": "Express",
+                    "icon": "/imgs/ejs.png",
+                    "fallbackIcon": "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/express/express-original.svg",
+                    "level": 3,
+                    "code": {
+                        "language": "jsx",
+                        "content": "const express = require('express');\nconst app = express();\nconst port = 3000;\n\napp.get('/', (req, res) => res.send('¡Hola, mundo!'));\napp.listen(port, () => console.log(`Servidor escuchando en el puerto ${port}`));"
+                    }
+                }
+            ]
+        },
+        "dev-tools": {
+            "title": {
+                "es": "Herramientas (Soft)",
+                "en": "Software Tools",
+                "zh": "软件工具"
+            },
+            "icon": "🧑🏽‍💻",
+            "skills": [
+                {
+                    "name": "Visual Studio Code",
+                    "icon": "/imgs/vb.png",
+                    "fallbackIcon": "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/astro/astro-original.svg",
+                    "level": 5,
+                    "code": {
+                        "language": "vsc",
+                        "content": ""
+                    }
+                },
+                {
+                    "name": "Visual Studio",
+                    "icon": "/imgs/vst.png",
+                    "fallbackIcon": "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/tailwindcss/tailwindcss-original.svg",
+                    "level": 4,
+                    "code": {
+                        "language": "vs",
+                        "content": ""
+                    }
+                },
+                {
+                    "name": "GIT",
+                    "icon": "/imgs/git.png",
+                    "fallbackIcon": "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/react/react-original.svg",
+                    "level": 4,
+                    "code": {
+                        "language": "git",
+                        "content": ""
+                    }
+                },
+                {
+                    "name": "GIT Hub",
+                    "icon": "/imgs/gith.png",
+                    "fallbackIcon": "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nodejs/nodejs-original.svg",
+                    "level": 4,
+                    "code": {
+                        "language": "gith",
+                        "content": ""
+                    }
+                },
+                {
+                    "name": "HTML",
+                    "icon": "/imgs/html.png",
+                    "fallbackIcon": "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/astro/astro-original.svg",
+                    "level": 4,
+                    "code": {
+                        "language": "html",
+                        "content": ""
+                    }
+                },
+                {
+                    "name": "CSS",
+                    "icon": "/imgs/css.png",
+                    "fallbackIcon": "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/astro/astro-original.svg",
+                    "level": 4,
+                    "code": {
+                        "language": "css",
+                        "content": ""
+                    }
+                },
+                {
+                    "name": "LabVIEW",
+                    "icon": "/imgs/lbv.png",
+                    "fallbackIcon": "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/tailwindcss/tailwindcss-original.svg",
+                    "level": 3,
+                    "code": {
+                        "language": "lbv",
+                        "content": ""
+                    }
+                },
+                {
+                    "name": "Arduino",
+                    "icon": "/imgs/ardu.png",
+                    "fallbackIcon": "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/tailwindcss/tailwindcss-original.svg",
+                    "level": 3,
+                    "code": {
+                        "language": "ino",
+                        "content": ""
+                    }
+                },
+                {
+                    "name": "MySQL Worbench",
+                    "icon": "/imgs/mysql.png",
+                    "fallbackIcon": "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/express/express-original.svg",
+                    "level": 3,
+                    "code": {
+                        "language": "mysql",
+                        "content": ""
+                    }
+                },
+                {
+                    "name": "Mongo DB",
+                    "icon": "/imgs/mongo.png",
+                    "fallbackIcon": "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/express/express-original.svg",
+                    "level": 3,
+                    "code": {
+                        "language": "mongo",
+                        "content": ""
+                    }
+                },
+                {
+                    "name": "Render",
+                    "icon": "/imgs/ren.png",
+                    "fallbackIcon": "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/express/express-original.svg",
+                    "level": 3,
+                    "code": {
+                        "language": "render",
+                        "content": ""
+                    }
+                },
+                {
+                    "name": "Core FTP LE",
+                    "icon": "/imgs/core.png",
+                    "fallbackIcon": "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/express/express-original.svg",
+                    "level": 3,
+                    "code": {
+                        "language": "core",
+                        "content": ""
+                    }
+                }
+            ]
+        },
+        "hrdw-tools": {
+            "title": {
+                "es": "Herramientas (Hrdw)",
+                "en": "Hardware Tools",
+                "zh": "硬件工具"
+            },
+            "icon": "🛠️",
+            "skills": [
+                {
+                    "name": "LTspice",
+                    "icon": "/imgs/lts.png",
+                    "fallbackIcon": "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/astro/astro-original.svg",
+                    "level": 5,
+                    "code": {
+                        "language": "spice",
+                        "content": ""
+                    }
+                },
+                {
+                    "name": "Multisim",
+                    "icon": "/imgs/mus.png",
+                    "fallbackIcon": "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/astro/astro-original.svg",
+                    "level": 4,
+                    "code": {
+                        "language": "mus",
+                        "content": ""
+                    }
+                },
+                {
+                    "name": "EASY EDA",
+                    "icon": "/imgs/esa.png",
+                    "fallbackIcon": "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/astro/astro-original.svg",
+                    "level": 3,
+                    "code": {
+                        "language": "esa",
+                        "content": ""
+                    }
+                }
+            ]
+        },
+        "knoladge": {
+            "title": {
+                "es": "Conocimiento",
+                "en": "Knowledge",
+                "zh": "知识"
+            },
+            "icon": "🤓",
+            "skills": [
+                {
+                    "name": "Windows",
+                    "icon": "/imgs/win.png",
+                    "fallbackIcon": "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/windows/windows-original.svg",
+                    "level": 5,
+                    "code": {
+                        "language": "win",
+                        "content": ""
+                    }
+                },
+                {
+                    "name": "Linux",
+                    "icon": "/imgs/linux.png",
+                    "fallbackIcon": "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/linux/linux-original.svg",
+                    "level": 4,
+                    "code": {
+                        "language": "linux",
+                        "content": ""
+                    }
+                },
+                {
+                    "name": "Redes",
+                    "icon": "/imgs/net.png",
+                    "fallbackIcon": "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/astro/astro-original.svg",
+                    "level": 3,
+                    "code": {
+                        "language": "net",
+                        "content": ""
+                    }
+                },
+                {
+                    "name": "AI",
+                    "icon": "/imgs/ai.png",
+                    "fallbackIcon": "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/astro/astro-original.svg",
+                    "level": 3,
+                    "code": {
+                        "language": "ai",
+                        "content": ""
+                    }
+                },
+                {
+                    "name": "SRUM",
+                    "icon": "/imgs/scrum.png",
+                    "fallbackIcon": "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/astro/astro-original.svg",
+                    "level": 3,
+                    "code": {
+                        "language": "scrum",
+                        "content": ""
+                    }
+                },
+                {
+                    "name": "MVC",
+                    "icon": "/imgs/mvc.png",
+                    "fallbackIcon": "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/astro/astro-original.svg",
+                    "level": 3,
+                    "code": {
+                        "language": "mvc",
+                        "content": ""
+                    }
+                },
+                {
+                    "name": "Clear Arquitecture",
+                    "icon": "/imgs/astro.png",
+                    "fallbackIcon": "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/astro/astro-original.svg",
+                    "level": 3,
+                    "code": {
+                        "language": "astro",
+                        "content": ""
+                    }
+                },
+                {
+                    "name": "Control",
+                    "icon": "/imgs/astro.png",
+                    "fallbackIcon": "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/astro/astro-original.svg",
+                    "level": 3,
+                    "code": {
+                        "language": "scrum",
+                        "content": ""
+                    }
+                },
+                {
+                    "name": "RF",
+                    "icon": "/imgs/srum.png",
+                    "fallbackIcon": "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/astro/astro-original.svg",
+                    "level": 3,
+                    "code": {
+                        "language": "astro",
+                        "content": ""
+                    }
+                },
+                {
+                    "name": "Protocolos de comunicacion",
+                    "icon": "/imgs/astro.png",
+                    "fallbackIcon": "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/astro/astro-original.svg",
+                    "level": 3,
+                    "code": {
+                        "language": "astro",
+                        "content": ""
+                    }
+                },
+                {
+                    "name": "Metrologia",
+                    "icon": "/imgs/astro.png",
+                    "fallbackIcon": "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/astro/astro-original.svg",
+                    "level": 3,
+                    "code": {
+                        "language": "astro",
+                        "content": ""
+                    }
+                }
+            ]
+        }
+    }
+}

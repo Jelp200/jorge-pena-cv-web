@@ -1,0 +1,62 @@
+{
+    "navbar": {
+        "home": "首页",
+        "about": "关于",
+        "skills": "技能",
+        "projects": "项目",
+        "contact": "联系"
+    },
+    "hero": {
+        "title": "软件/硬件开发人员与设计师",
+        "subtitle": "在软件和硬件的交叉点创造创新解决方案",
+        "contact_button": "联系我",
+        "projects_button": "查看项目",
+        "scroll_hint": "滚动发现"
+    },
+    "skills": {
+        "title": "技能与技术",
+        "subtitle": "我用来创建创新解决方案的语言、框架和工具",
+        "categories": "分类"
+    },
+    "companies": {
+        "title": "专业经验",
+        "subtitle": "我有幸合作过的公司和组织",
+        "projects": {
+            "completed": "完成项目"
+        },
+        "stats": {
+            "companies": "公司",
+            "years": "经验年数",
+            "projects": "完成项目",
+            "satisfaction": "客户满意度"
+        }
+    },
+    "projects": {
+        "title": "精选项目",
+        "subtitle": "我最近和相关工作的精选",
+        "filters": {
+            "all": "全部",
+            "ai": "人工智能",
+            "web": "Web 开发",
+            "hardware": "电子开发",
+            "full": "全栈开发",
+            "control": "控制系统"
+        },
+        "featured": "精选",
+        "view_details": "查看详情",
+        "modal": {
+            "description": "描述",
+            "features": "主要特点",
+            "close": "关闭",
+            "view_project": "查看完整项目"
+        }
+    },
+    "contact": {
+        "get_in_touch": "联系我",
+        "name": "工程师 Jorge E. Peña Paz",
+        "email": "jorge.pena0516@gmail.com",
+        "message": "你的信息",
+        "send": "发送"
+    },
+    "footer": "© 2025 Jorge Peña - 版权所有"
+}

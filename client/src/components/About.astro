@@ -1,0 +1,309 @@
+---
+// src/components/About.astro
+import { t } from "../i18n/index.js";
+
+const initialLang =
+    typeof window !== "undefined"
+        ? localStorage.getItem("preferredLang") || "es"
+        : "es";
+---
+
+<section id="about" class="py-20 bg-black text-white">
+    <div class="max-w-6xl mx-auto px-4">
+        <!-- Header -->
+        <div class="text-center mb-16">
+            <h2 class="text-4xl md:text-5xl font-bold mb-4" data-i18n="about.title">
+                {t(initialLang, "about.title")}
+            </h2>
+            <p class="text-xl text-gray-500 max-w-2xl mx-auto" data-i18n="about.subtitle">
+                {t(initialLang, "about.subtitle")}
+            </p>
+        </div>
+
+        <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+            <!-- Columna Principal - Perfil y Experiencia -->
+            <div class="lg:col-span-2 space-y-8">
+                <!-- Tarjeta de Perfil -->
+                <div class="bg-gray-800/40 rounded-2xl p-8 backdrop-blur-sm border border-gray-700">
+                    <h3 class="text-2xl font-bold text-white mb-6" data-i18n="about.profile_title">Perfil Profesional</h3>
+                    <p class="text-gray-300 leading-relaxed" data-i18n="about.profile_description">
+                        Ingeniero en Comunicaciones y Electrónica con experiencia en desarrollo de sistemas embebidos, 
+                        integración de APIs, proyectos IoT, inteligencia artificial y análisis de datos. 
+                        Apasionado por la innovación tecnológica, posee habilidades de liderazgo y trabajo en equipo.
+                    </p>
+                </div>
+
+                <!-- Experiencia Profesional -->
+                <div class="bg-gray-800/40 rounded-2xl p-8 backdrop-blur-sm border border-gray-700">
+                    <h3 class="text-2xl font-bold text-white mb-6" data-i18n="about.experience_title">Experiencia Profesional</h3>
+                    
+                    <!-- GRADUS TECHNOLOGIES -->
+                    <div class="mb-6 last:mb-0">
+                        <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between mb-3">
+                            <h4 class="text-xl font-semibold text-white">GRADUS TECHNOLOGIES</h4>
+                            <span class="text-[#E64530] font-medium">2021 - Presente</span>
+                        </div>
+                        <p class="text-gray-500 mb-4" data-i18n="about.gradus_role">Empresa de Servicios Tecnológicos</p>
+                        
+                        <ul class="space-y-2 text-gray-300">
+                            <li class="flex items-start gap-2">
+                                <span class="text-[#E64530] mt-1">•</span>
+                                <span data-i18n="about.gradus_1">Creación y administración de bases de datos (MongoDB y MySQL)</span>
+                            </li>
+                            <li class="flex items-start gap-2">
+                                <span class="text-[#E64530] mt-1">•</span>
+                                <span data-i18n="about.gradus_2">Desarrollo, implementación y análisis de sistemas de adquisición de datos bioeléctricos</span>
+                            </li>
+                            <li class="flex items-start gap-2">
+                                <span class="text-[#E64530] mt-1">•</span>
+                                <span data-i18n="about.gradus_3">Desarrollo de APIs con CH, C/C++, JavaScript y Python</span>
+                            </li>
+                            <li class="flex items-start gap-2">
+                                <span class="text-[#E64530] mt-1">•</span>
+                                <span data-i18n="about.gradus_4">Implementación de modelos de inteligencia artificial para aplicaciones de mensajería y sistemas embebidos</span>
+                            </li>
+                            <li class="flex items-start gap-2">
+                                <span class="text-[#E64530] mt-1">•</span>
+                                <span data-i18n="about.gradus_5">Diseño e implementación de algoritmos de adquisición de datos para sistemas embebidos</span>
+                            </li>
+                            <li class="flex items-start gap-2">
+                                <span class="text-[#E64530] mt-1">•</span>
+                                <span data-i18n="about.gradus_6">Consumo de APIs para GPTs especializados en sectores legal y de souvenirs</span>
+                            </li>
+                            <li class="flex items-start gap-2">
+                                <span class="text-[#E64530] mt-1">•</span>
+                                <span data-i18n="about.gradus_7">Desarrollo front-end y back-end de sitios web</span>
+                            </li>
+                            <li class="flex items-start gap-2">
+                                <span class="text-[#E64530] mt-1">•</span>
+                                <span data-i18n="about.gradus_8">Gestión de presupuestos</span>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Columna Lateral - Información Educativa y Habilidades -->
+            <div class="space-y-8">
+                <!-- Educación -->
+                <div class="bg-gray-800/40 rounded-2xl p-6 backdrop-blur-sm border border-gray-700">
+                    <h3 class="text-xl font-bold text-white mb-4" data-i18n="about.education_title">Formación Académica</h3>
+                    
+                    <div class="space-y-4">
+                        <div>
+                            <h4 class="text-white font-semibold" data-i18n="about.education_1_title">Ingeniería en Comunicaciones y Electrónica</h4>
+                            <p class="text-gray-500 text-sm" data-i18n="about.education_1_school">Instituto Politécnico Nacional</p>
+                            <p class="text-[#E64530] text-sm">2019 - 2025</p>
+                        </div>
+                        
+                        <div>
+                            <h4 class="text-white font-semibold" data-i18n="about.education_2_title">Ingeniería en Sistemas Computacionales</h4>
+                            <p class="text-gray-500 text-sm" data-i18n="about.education_2_school">Universidad del Valle de México</p>
+                            <p class="text-[#E64530] text-sm">2018 - 2019</p>
+                        </div>
+                        
+                        <div>
+                            <h4 class="text-white font-semibold" data-i18n="about.education_3_title">Técnico en Contabilidad</h4>
+                            <p class="text-gray-500 text-sm" data-i18n="about.education_3_school">CBTiS No. 6 Leona Vicario</p>
+                            <p class="text-[#E64530] text-sm">2015 - 2018</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Habilidades Personales -->
+                <div class="bg-gray-800/40 rounded-2xl p-6 backdrop-blur-sm border border-gray-700">
+                    <h3 class="text-xl font-bold text-white mb-4" data-i18n="about.skills_title">Habilidades Personales</h3>
+                    
+                    <div class="space-y-3">
+                        <div>
+                            <div class="flex justify-between mb-1">
+                                <span class="text-gray-300 text-sm" data-i18n="about.skill_1">Buena comunicación</span>
+                                <span class="text-[#E64530] text-sm">Avanzado</span>
+                            </div>
+                            <div class="w-full bg-gray-700 rounded-full h-2">
+                                <div class="bg-[#E64530] h-2 rounded-full" style="width: 90%"></div>
+                            </div>
+                        </div>
+                        
+                        <div>
+                            <div class="flex justify-between mb-1">
+                                <span class="text-gray-300 text-sm" data-i18n="about.skill_2">Manejo de equipos multidisciplinarios</span>
+                                <span class="text-[#E64530] text-sm">Avanzado</span>
+                            </div>
+                            <div class="w-full bg-gray-700 rounded-full h-2">
+                                <div class="bg-[#E64530] h-2 rounded-full" style="width: 85%"></div>
+                            </div>
+                        </div>
+                        
+                        <div>
+                            <div class="flex justify-between mb-1">
+                                <span class="text-gray-300 text-sm" data-i18n="about.skill_3">Resultados bajo presión</span>
+                                <span class="text-[#E64530] text-sm">Avanzado</span>
+                            </div>
+                            <div class="w-full bg-gray-700 rounded-full h-2">
+                                <div class="bg-[#E64530] h-2 rounded-full" style="width: 88%"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Logros Académicos -->
+                <div class="bg-gray-800/40 rounded-2xl p-6 backdrop-blur-sm border border-gray-700">
+                    <h3 class="text-xl font-bold text-white mb-4" data-i18n="about.achievements_title">Logros Académicos</h3>
+                    
+                    <div class="flex items-start gap-3">
+                        <span class="text-[#E64530] mt-1">•</span>
+                        <span class="text-gray-300" data-i18n="about.achievement_1">
+                            Representante de ESIME Z en "IBM Students Advocate" 2020
+                        </span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Botón para Descargar CV -->
+        <div class="text-center mt-12">
+            <a href="/JorgePeñaCV_En.pdf" 
+               download
+               class="inline-flex items-center gap-2 bg-[#E64530] hover:bg-[#d63c28] text-white px-8 py-4 rounded-lg transition-all duration-300 transform hover:scale-105 font-medium">
+                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/>
+                </svg>
+                <span data-i18n="about.download_cv">Descargar CV Completo</span>
+            </a>
+        </div>
+    </div>
+</section>
+
+<script is:inline>
+    // Internationalization for about section
+    function updateAboutTexts(lang) {
+        const elements = document.querySelectorAll('[data-i18n]');
+        const translations = {
+            'es': {
+                'about.title': 'Acerca de Mí',
+                'about.subtitle': 'Ingeniero en Comunicaciones y Electrónica especializado en desarrollo tecnológico',
+                'about.profile_title': 'Perfil Profesional',
+                'about.profile_description': 'Ingeniero en Comunicaciones y Electrónica con experiencia en desarrollo de sistemas embebidos, integración de APIs, proyectos IoT, inteligencia artificial y análisis de datos. Apasionado por la innovación tecnológica, posee habilidades de liderazgo y trabajo en equipo.',
+                'about.experience_title': 'Experiencia Profesional',
+                'about.gradus_role': 'Empresa de Servicios Tecnológicos',
+                'about.gradus_1': 'Creación y administración de bases de datos (MongoDB y MySQL)',
+                'about.gradus_2': 'Desarrollo, implementación y análisis de sistemas de adquisición de datos bioeléctricos',
+                'about.gradus_3': 'Desarrollo de APIs con C#, C/C++, JavaScript y Python',
+                'about.gradus_4': 'Implementación de modelos de inteligencia artificial para aplicaciones de mensajería y sistemas embebidos',
+                'about.gradus_5': 'Diseño e implementación de algoritmos de adquisición de datos para sistemas embebidos',
+                'about.gradus_6': 'Consumo de APIs para GPTs especializados en sectores legal y de souvenirs',
+                'about.gradus_7': 'Desarrollo front-end y back-end de sitios web',
+                'about.gradus_8': 'Gestión de presupuestos',
+                'about.education_title': 'Formación Académica',
+                'about.education_1_title': 'Ingeniería en Comunicaciones y Electrónica',
+                'about.education_1_school': 'Instituto Politécnico Nacional',
+                'about.education_2_title': 'Ingeniería en Sistemas Computacionales',
+                'about.education_2_school': 'Universidad del Valle de México',
+                'about.education_3_title': 'Técnico en Contabilidad',
+                'about.education_3_school': 'CBTiS No. 6 Leona Vicario',
+                'about.skills_title': 'Habilidades Personales',
+                'about.skill_1': 'Buena comunicación',
+                'about.skill_2': 'Manejo de equipos multidisciplinarios',
+                'about.skill_3': 'Resultados bajo presión',
+                'about.achievements_title': 'Logros Académicos',
+                'about.achievement_1': 'Representante de ESIME Z en "IBM Students Advocate" 2020',
+                'about.download_cv': 'Descargar CV Completo'
+            },
+            'en': {
+                'about.title': 'About Me',
+                'about.subtitle': 'Communications and Electronics Engineer specialized in technological development',
+                'about.profile_title': 'Professional Profile',
+                'about.profile_description': 'Communications and Electronics Engineer with experience in embedded systems development, API integration, IoT projects, artificial intelligence and data analytics. Passionate about technological innovation, he possesses leadership and teamwork skills.',
+                'about.experience_title': 'Professional Experience',
+                'about.gradus_role': 'Technology Services Company',
+                'about.gradus_1': 'Database creation and administration (MongoDB and MySQL)',
+                'about.gradus_2': 'Development, implementation and analysis of bioelectrical data acquisition systems',
+                'about.gradus_3': 'API development with C#, C/C++, JavaScript and Python',
+                'about.gradus_4': 'Implementation of artificial intelligence models for messaging applications and embedded systems',
+                'about.gradus_5': 'Design and implementation of data acquisition algorithms for embedded systems',
+                'about.gradus_6': 'API consumption for specialized GPTs in legal and souvenir sectors',
+                'about.gradus_7': 'Front-end and back-end website development',
+                'about.gradus_8': 'Budget management',
+                'about.education_title': 'Academic Education',
+                'about.education_1_title': 'Communications and Electronics Engineering',
+                'about.education_1_school': 'National Polytechnic Institute',
+                'about.education_2_title': 'Computer Systems Engineering',
+                'about.education_2_school': 'University of the Valley of Mexico',
+                'about.education_3_title': 'Accounting Technician',
+                'about.education_3_school': 'CBTiS No. 6 Leona Vicario',
+                'about.skills_title': 'Personal Skills',
+                'about.skill_1': 'Good communication',
+                'about.skill_2': 'Management of multidisciplinary teams',
+                'about.skill_3': 'Results under pressure',
+                'about.achievements_title': 'Academic Achievements',
+                'about.achievement_1': 'ESIME Z representative at "IBM Students Advocate" 2020',
+                'about.download_cv': 'Download Full CV'
+            },
+            'zh': {
+                'about.title': '关于我',
+                'about.subtitle': '专注于技术开发的通信与电子工程师',
+                'about.profile_title': '专业简介',
+                'about.profile_description': '通信与电子工程师，在嵌入式系统开发、API集成、物联网项目、人工智能和数据分析方面拥有经验。热衷于技术创新，具备领导力和团队合作能力。',
+                'about.experience_title': '专业经验',
+                'about.gradus_role': '科技服务公司',
+                'about.gradus_1': '数据库创建和管理（MongoDB和MySQL）',
+                'about.gradus_2': '生物电数据采集系统的开发、实施和分析',
+                'about.gradus_3': '使用C#、C/C++、JavaScript和Python开发API',
+                'about.gradus_4': '为消息应用和嵌入式系统实施人工智能模型',
+                'about.gradus_5': '为嵌入式系统设计和实施数据采集算法',
+                'about.gradus_6': '为法律和纪念品领域的专业GPT使用API',
+                'about.gradus_7': '网站前端和后端开发',
+                'about.gradus_8': '预算管理',
+                'about.education_title': '学历教育',
+                'about.education_1_title': '通信与电子工程',
+                'about.education_1_school': '国家理工学院',
+                'about.education_2_title': '计算机系统工程',
+                'about.education_2_school': '墨西哥谷大学',
+                'about.education_3_title': '会计技术员',
+                'about.education_3_school': 'CBTiS No. 6 Leona Vicario',
+                'about.skills_title': '个人技能',
+                'about.skill_1': '良好沟通',
+                'about.skill_2': '多学科团队管理',
+                'about.skill_3': '压力下的成果',
+                'about.achievements_title': '学术成就',
+                'about.achievement_1': '2020年ESIME Z在"IBM学生倡导者"中的代表',
+                'about.download_cv': '下载完整简历'
+            }
+        };
+        
+        elements.forEach(element => {
+            const key = element.getAttribute('data-i18n');
+            if (translations[lang] && translations[lang][key]) {
+                element.textContent = translations[lang][key];
+            }
+        });
+    }
+
+    // Initialize when DOM is ready
+    document.addEventListener('DOMContentLoaded', function() {
+        const currentLang = localStorage.getItem('preferredLang') || 'es';
+        updateAboutTexts(currentLang);
+    });
+    
+    // Listen for language changes
+    window.addEventListener('languageChanged', (e) => {
+        updateAboutTexts(e.detail.language);
+    });
+</script>
+
+<style>
+    /* Animaciones suaves para la sección about */
+    .skill-bar {
+        transition: width 0.8s ease-in-out;
+    }
+    
+    /* Efectos hover para las tarjetas */
+    .about-card {
+        transition: all 0.3s ease;
+    }
+    
+    .about-card:hover {
+        transform: translateY(-5px);
+    }
+</style>

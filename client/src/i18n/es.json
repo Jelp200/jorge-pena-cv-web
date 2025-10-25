@@ -1,0 +1,62 @@
+{
+    "navbar": {
+        "home": "Inicio",
+        "about": "Acerca de",
+        "skills": "Habilidades",
+        "projects": "Proyectos",
+        "contact": "Contacto"
+    },
+    "hero":{
+        "title": "Desarrollador/Diseñador de Software y Hardware",
+        "subtitle": "Creando soluciones innovadoras en la intersección del software y hardware",
+        "contact_button": "Contáctame",
+        "projects_button": "Ver Proyectos",
+        "scroll_hint": "Desplázate para descubrir"
+    },
+    "skills": {
+        "title": "Habilidades & Tecnologías",
+        "subtitle": "Lenguajes, frameworks y herramientas que uso para crear soluciones innovadoras",
+        "categories": "Categorías"
+    },
+    "companies": {
+        "title": "Experiencia Profesional",
+        "subtitle": "Empresas y organizaciones con las que he tenido el privilegio de colaborar",
+        "projects": {
+            "completed": "Proyectos completados"
+        },
+        "stats": {
+            "companies": "Empresas",
+            "years": "Años de Experiencia",
+            "projects": "Proyectos Completados",
+            "satisfaction": "Satisfacción del Cliente"
+        }
+    },
+    "projects": {
+        "title": "Proyectos Destacados",
+        "subtitle": "Una selección de mis trabajos más recientes y relevantes",
+        "filters": {
+            "all": "Todos",
+            "ai": "IA",
+            "web": "Desarrollo Web",
+            "hardware": "Desarrollo Electronico",
+            "full": "Desarrollo Full Stack",
+            "control": "Sistemas de Control"
+        },
+        "featured": "Destacado",
+        "view_details": "Ver Detalles",
+        "modal": {
+            "description": "Descripción",
+            "features": "Características Principales",
+            "close": "Cerrar",
+            "view_project": "Ver Proyecto Completo"
+        }
+    },
+    "contact": {
+        "get_in_touch": "Ponte en contacto",
+        "name": "Ing. Jorge E. Peña Paz",
+        "email": "jorge.pena0516@gmail.com",
+        "message": "Tu mensaje",
+        "send": "Enviar"
+    },
+    "footer": "© 2025 Jorge Peña - Todos los derechos reservados."
+}
